@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Outfit:wght@400;600&family=Space+Grotesk:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .font-body {
+    font-family: 'Outfit','Playfair Display', 'Fira Code', serif;
+  }
+
+  .animate-default {
+    animation: fadeInUp 0.6s ease-out both;
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(12px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .btn {
+    @apply px-4 py-2 rounded-full bg-[#C96342] text-white font-semibold shadow hover:bg-[#E5B2A1] transition-all;
+  }
+
+  .tag {
+    @apply px-3 py-1 text-sm rounded-full bg-[#F0EEE6] text-[#3D3D3A] dark:bg-[#3D3D3A] dark:text-[#F5F4ED] border border-[#E5B2A1] dark:border-[#C96342];
+  }
+}
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}

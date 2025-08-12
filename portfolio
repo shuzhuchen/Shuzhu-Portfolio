@@ -1,0 +1,623 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Moon, 
+  Sun, 
+  Github, 
+  Linkedin, 
+  Download, 
+  Mail, 
+  MapPin, 
+  Calendar,
+  ExternalLink,
+  Send,
+  MessageCircle,
+  X,
+  Code,
+  Monitor,
+  Server,
+  Cloud,
+  Database,
+  Brain,
+  Users
+} from 'lucide-react';
+
+const Portfolio = () => {
+  const [isDark, setIsDark] = useState(true);
+  const [activeSection, setActiveSection] = useState('home');
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatMessage, setChatMessage] = useState('');
+  const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
+
+  // Handle scroll and update active section
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const skills = {
+    'Programming Languages': ['Python', 'JavaScript', 'TypeScript', 'C++', 'SQL', 'R'],
+    'Frontend': ['React', 'Vue.js', 'HTML5', 'CSS3', 'Tailwind CSS', 'Bootstrap'],
+    'Backend': ['Node.js', 'Express.js', 'Django', 'Flask', 'FastAPI'],
+    'Cloud': ['AWS', 'Google Cloud', 'Azure', 'Docker', 'Kubernetes'],
+    'Database': ['PostgreSQL', 'MongoDB', 'Redis', 'MySQL', 'SQLite'],
+    'DS/ML': ['TensorFlow', 'PyTorch', 'Scikit-learn', 'Pandas', 'NumPy', 'Jupyter'],
+    'Project Management': ['Git', 'Jira', 'Agile', 'Scrum', 'CI/CD']
+  };
+
+  const skillIcons = {
+    'Programming Languages': Code,
+    'Frontend': Monitor,
+    'Backend': Server,
+    'Cloud': Cloud,
+    'Database': Database,
+    'DS/ML': Brain,
+    'Project Management': Users
+  };
+
+  const projects = [
+    {
+      id: 1,
+      name: 'AI Sentiment Analysis Platform',
+      brief: 'Real-time sentiment analysis using deep learning models',
+      techStack: ['Python', 'TensorFlow', 'React', 'FastAPI'],
+      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop',
+      keyFeatures: ['Real-time text analysis', 'Multi-language support', 'Interactive dashboard', 'REST API integration']
+    },
+    {
+      id: 2,
+      name: 'Employee Attrition Predictor',
+      brief: 'ML model to predict employee turnover with 89% accuracy',
+      techStack: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit'],
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop',
+      keyFeatures: ['Predictive modeling', 'Feature importance analysis', 'Interactive visualizations', 'Model deployment']
+    },
+    {
+      id: 3,
+      name: 'Automated OrderBot System',
+      brief: 'Intelligent chatbot for restaurant order management',
+      techStack: ['Node.js', 'NLP', 'MongoDB', 'Socket.io'],
+      image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=400&h=300&fit=crop',
+      keyFeatures: ['Natural language processing', 'Order management', 'Real-time communication', 'Payment integration']
+    }
+  ];
+
+  const experiences = [
+    {
+      position: 'AI/ML Data Scientist',
+      company: 'Kismet.xyz',
+      location: 'San Jose, CA',
+      period: 'Jan 2025 – Present',
+      responsibilities: [
+        'Designed data pipeline to ensure accurate and timely data migration for OmniSense Labs, optimizing workflows for large-scale raw data.',
+        'Developed ETL processes, automating data extraction, transformation, and loading to enhance data integrity and accessibility.',
+        'Collaborated with cross-functional teams to analyze data requirements and ensure integration of raw datasets into analytic ML workflows.',
+        'Conducted data validation and quality assurance to mitigate errors and discrepancies, improving the reliability of business intelligence reports and AI models.',
+        'Optimized pipeline performance, reducing data processing time and improving scalability for future expansion.'
+      ]
+    },
+    {
+      position: 'Financial Data Analyst',
+      company: 'Bank of China, Shanghai Branch',
+      location: 'Shanghai, China',
+      period: 'Aug 2020 – Jun 2021',
+      responsibilities: [
+        'Developed and deployed 10+ interactive data visualization dashboards using Tableau, presenting key financial metrics and trends to senior management, which improved decision-making efficiency by 25% and enhanced reporting accuracy by 21%',
+        'Performed in-depth analysis of over 50,000 financial data points from loan portfolios and trading systems to support credit risk management, utilizing SQL and Python to automate reporting workflows, reducing manual effort by 40% and improving process efficiency by 25%, leading to a 15% reduction in reporting errors'
+      ]
+    }
+  ];
+
+  const education = [
+    {
+      degree: 'Master of Science in Engineering, Data Science Specialization',
+      school: 'San Jose State University',
+      location: 'San Jose, CA',
+      period: 'Expected May 2025',
+      type: 'graduate'
+    },
+    {
+      degree: 'Bachelor of Economics in Mathematical Economics',
+      school: 'Shanghai University of Finance and Economics',
+      location: 'Shanghai, China',
+      period: 'July 2020',
+      type: 'undergrad'
+    }
+  ];
+
+  const courses = {
+    graduate: ['Artificial Intelligence and Data Engineering', 'Database System Principles', 'Deep Learning', 'Advanced Data Mining'],
+    undergrad: ['Computer Programming(C++)', 'Data-Driven Business Problem Modeling', 'Econometrics'],
+    'extra curricula': ['NVIDIA Deep Learning Institute', 'Coursera Machine Learning', 'AWS Cloud Practitioner', 'Oracle Database Certification']
+  };
+
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission
+    console.log('Contact form submitted:', contactForm);
+    setContactForm({ name: '', email: '', message: '' });
+  };
+
+  const handleChatSubmit = (e) => {
+    e.preventDefault();
+    // Handle chat message
+    console.log('Chat message:', chatMessage);
+    setChatMessage('');
+  };
+
+  return (
+    <div className={`min-h-screen transition-colors duration-300 ${isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
+      {/* Fixed Navigation */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isDark ? 'bg-gray-900/95' : 'bg-white/95'} backdrop-blur-sm border-b ${isDark ? 'border-gray-800' : 'border-gray-200'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div 
+              className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => scrollToSection('home')}
+            >
+              <span className="text-2xl">🤓</span>
+              <span className="text-xl font-bold text-blue-400">Sz</span>
+            </div>
+
+            {/* Navigation Links */}
+            <div className="hidden md:flex items-center space-x-8">
+              {['About', 'Skills', 'Experience', 'Projects', 'Education', 'Contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className={`text-sm font-medium transition-colors hover:text-blue-400 ${
+                    activeSection === item.toLowerCase() ? 'text-blue-400' : isDark ? 'text-gray-300' : 'text-gray-600'
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+              
+              {/* Theme Toggle */}
+              <button
+                onClick={() => setIsDark(!isDark)}
+                className={`p-2 rounded-lg transition-colors ${isDark ? 'hover:bg-gray-800' : 'hover:bg-gray-100'}`}
+              >
+                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Home Section */}
+      <section id="home" className="pt-20 min-h-screen flex items-center justify-center">
+        <div className="text-center max-w-4xl mx-auto px-4">
+          <h1 className="text-6xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent animate-fade-in">
+            Hello! I'm Shuzhu
+          </h1>
+          <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-gray-300">
+            Full Stack & AI Developer
+          </h2>
+          <p className="text-lg md:text-xl text-gray-400 mb-8 leading-relaxed max-w-3xl mx-auto">
+            I build exceptional digital experiences for the web and develop AI applications. 
+            Currently studying at SJSU, specializing in modern web technologies and artificial intelligence.
+          </p>
+          
+          {/* Social Links */}
+          <div className="flex justify-center space-x-6">
+            <a href="#" className="p-3 rounded-full bg-blue-600 hover:bg-blue-700 transition-colors">
+              <Github className="w-6 h-6" />
+            </a>
+            <a href="#" className="p-3 rounded-full bg-blue-600 hover:bg-blue-700 transition-colors">
+              <Linkedin className="w-6 h-6" />
+            </a>
+            <a href="#" className="p-3 rounded-full bg-blue-600 hover:bg-blue-700 transition-colors">
+              <Download className="w-6 h-6" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">About Me</h2>
+          <div className="text-lg leading-relaxed text-gray-300 space-y-6">
+            <p>
+              Hello there! My name is Shuzhu and I am a master's student at San Jose State University, 
+              pursuing a degree in Data Science. My journey began at Shanghai University of Finance and Economics, 
+              where I earned my Bachelor's in Mathematical Economics.
+            </p>
+            <p>
+              Previously, I've been working on some exciting projects, including sentiment analysis, 
+              predicting employee attrition, and building automated orderbots. Exploring in various fields 
+              of AI/ML and software engineering, I've sharpened my skills in machine learning algorithms 
+              and full-stack development.
+            </p>
+            <p>
+              I am currently looking for intern opportunities as Data Scientist, Machine Learning Engineer, 
+              or Software Development Engineer. If you're looking for an intern who can bring fresh, 
+              innovative thinking to your team, let's connect and see how we can turn data into insights 
+              and innovation together!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-20 px-4 bg-gray-800/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">Skills</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {Object.entries(skills).map(([category, skillList]) => {
+              const IconComponent = skillIcons[category];
+              return (
+                <div key={category} className="bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
+                  <div className="flex items-center mb-4">
+                    <IconComponent className="w-6 h-6 text-blue-400 mr-3" />
+                    <h3 className="text-xl font-semibold">{category}</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {skillList.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm border border-blue-600/30"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">Experience</h2>
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-blue-400"></div>
+            
+            {experiences.map((exp, index) => (
+              <div key={index} className={`relative mb-12 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:pl-8'} pl-12 md:w-1/2 ${index % 2 === 1 ? 'md:ml-auto' : ''}`}>
+                {/* Timeline dot */}
+                <div className="absolute w-4 h-4 bg-blue-400 rounded-full left-2 md:left-1/2 transform md:-translate-x-1/2 top-2"></div>
+                
+                <div className="bg-gray-800 rounded-lg p-6">
+                  <h3 className="text-xl font-bold text-blue-400 mb-2">{exp.position}</h3>
+                  <p className="text-lg font-semibold mb-1">{exp.company}</p>
+                  <div className="flex items-center text-gray-400 mb-2 text-sm">
+                    <MapPin className="w-4 h-4 mr-1" />
+                    <span className="mr-4">{exp.location}</span>
+                    <Calendar className="w-4 h-4 mr-1" />
+                    <span>{exp.period}</span>
+                  </div>
+                  <ul className="space-y-2 text-gray-300">
+                    {exp.responsibilities.map((resp, idx) => (
+                      <li key={idx} className="text-sm leading-relaxed">• {resp}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-20 px-4 bg-gray-800/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project) => (
+              <div
+                key={project.id}
+                className="bg-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300 cursor-pointer group"
+                onClick={() => setSelectedProject(project)}
+              >
+                <div className="relative">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="text-white font-semibold">View Details</span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">{project.name}</h3>
+                  <p className="text-gray-300 mb-4 text-sm">{project.brief}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-1 bg-blue-600/20 text-blue-300 rounded text-xs border border-blue-600/30"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <Github className="w-5 h-5 text-gray-400 hover:text-blue-400 cursor-pointer transition-colors" />
+                    <ExternalLink className="w-5 h-5 text-gray-400 hover:text-blue-400 cursor-pointer transition-colors" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">Education</h2>
+          
+          {/* Education Timeline */}
+          <div className="relative mb-12">
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-blue-400"></div>
+            
+            {education.map((edu, index) => (
+              <div key={index} className={`relative mb-8 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:pl-8'} pl-12 md:w-1/2 ${index % 2 === 1 ? 'md:ml-auto' : ''}`}>
+                <div className="absolute w-4 h-4 bg-blue-400 rounded-full left-2 md:left-1/2 transform md:-translate-x-1/2 top-2"></div>
+                
+                <div className="bg-gray-800 rounded-lg p-6">
+                  <h3 className="text-lg font-bold text-blue-400 mb-2">{edu.degree}</h3>
+                  <p className="font-semibold mb-1">{edu.school}</p>
+                  <div className="flex items-center text-gray-400 mb-2 text-sm">
+                    <MapPin className="w-4 h-4 mr-1" />
+                    <span className="mr-4">{edu.location}</span>
+                    <Calendar className="w-4 h-4 mr-1" />
+                    <span>{edu.period}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Courses */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {Object.entries(courses).map(([type, courseList]) => (
+              <div key={type} className="bg-gray-800 rounded-lg p-6">
+                <h3 className="text-lg font-semibold mb-4 text-blue-400 capitalize">{type}</h3>
+                <ul className="space-y-2">
+                  {courseList.map((course, idx) => (
+                    <li key={idx} className="text-sm text-gray-300">• {course}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-4 bg-gray-800/50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">Contact</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* Contact Info */}
+            <div>
+              <h3 className="text-2xl font-semibold mb-6">Get In Touch</h3>
+              <div className="space-y-4">
+                <div className="flex items-center">
+                  <Mail className="w-5 h-5 text-blue-400 mr-3" />
+                  <span>shuzhu@example.com</span>
+                </div>
+                <div className="flex items-center">
+                  <Github className="w-5 h-5 text-blue-400 mr-3" />
+                  <span>github.com/shuzhu</span>
+                </div>
+                <div className="flex items-center">
+                  <Linkedin className="w-5 h-5 text-blue-400 mr-3" />
+                  <span>linkedin.com/in/shuzhu</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <form onSubmit={handleContactSubmit} className="space-y-6">
+              <div>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={contactForm.name}
+                  onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={contactForm.email}
+                  onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <textarea
+                  placeholder="Message"
+                  rows={4}
+                  value={contactForm.message}
+                  onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
+              >
+                <Send className="w-5 h-5 mr-2" />
+                Send Email
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Chat Widget */}
+      <div className="fixed bottom-6 right-6 z-50">
+        {chatOpen && (
+          <div className="mb-4 w-80 h-96 bg-gray-800 rounded-lg shadow-2xl border border-gray-700">
+            <div className="flex items-center justify-between p-4 border-b border-gray-700">
+              <h3 className="font-semibold">Chat with Shuzhu</h3>
+              <button
+                onClick={() => setChatOpen(false)}
+                className="text-gray-400 hover:text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-4 h-64 overflow-y-auto">
+              <div className="bg-blue-600/20 rounded-lg p-3 mb-4">
+                <p className="text-sm">Hi! I'm Shuzhu's AI assistant. Ask me anything about his background, skills, or projects!</p>
+              </div>
+            </div>
+            <form onSubmit={handleChatSubmit} className="p-4 border-t border-gray-700">
+              <div className="flex space-x-2">
+                <input
+                  type="text"
+                  placeholder="Ask about me..."
+                  value={chatMessage}
+                  onChange={(e) => setChatMessage(e.target.value)}
+                  className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded text-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                />
+                <button
+                  type="submit"
+                  className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+        
+        <button
+          onClick={() => setChatOpen(!chatOpen)}
+          className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all hover:scale-110"
+        >
+          <MessageCircle className="w-6 h-6" />
+        </button>
+        {!chatOpen && (
+          <div className="absolute -top-12 right-0 bg-gray-800 text-white px-3 py-1 rounded text-sm whitespace-nowrap">
+            Chat with Shuzhu
+          </div>
+        )}
+      </div>
+
+      {/* Project Detail Modal */}
+      {selectedProject && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-800 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="relative">
+              <img
+                src={selectedProject.image}
+                alt={selectedProject.name}
+                className="w-full h-64 object-cover rounded-t-lg"
+              />
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6">
+              <h3 className="text-2xl font-bold mb-4">{selectedProject.name}</h3>
+              <p className="text-gray-300 mb-6">{selectedProject.brief}</p>
+              
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold mb-3">Tech Stack</h4>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded border border-blue-600/30"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold mb-3">Key Features</h4>
+                <ul className="space-y-2">
+                  {selectedProject.keyFeatures.map((feature, idx) => (
+                    <li key={idx} className="text-gray-300">• {feature}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex space-x-4">
+                <button className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded transition-colors">
+                  <Github className="w-5 h-5 mr-2" />
+                  View Code
+                </button>
+                <button className="flex items-center px-4 py-2 border border-gray-600 hover:bg-gray-700 rounded transition-colors">
+                  <ExternalLink className="w-5 h-5 mr-2" />
+                  Live Demo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in {
+          animation: fade-in 1s ease-out;
+        }
+        
+        html {
+          scroll-behavior: smooth;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default Portfolio;
