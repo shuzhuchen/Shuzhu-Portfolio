@@ -13,6 +13,8 @@ const Navigation = ({ isDark, setIsDark, activeSection, scrollToSection }) => {
     }
   }, [isDark]);
 
+  const logoUrl = `${import.meta.env.BASE_URL}logo.png`;
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#F5F4ED]/50 dark:bg-[#3D3D3A]/50 shadow-lg backdrop-blur-md transition-all duration-300">      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,7 +24,7 @@ const Navigation = ({ isDark, setIsDark, activeSection, scrollToSection }) => {
             className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
             onClick={() => scrollToSection('home')}
           >
-            <img src="/logo.png" alt="Shuzhu logo" className="w-8 h-8 object-contain" />
+            <img src={logoUrl} alt="Shuzhu logo" className="w-8 h-8 object-contain" />
             <span className="text-xl font-fira-code text-[#3D3D3A] dark:text-[#F5F4ED] transition-all hover:underline hover:underline-offset-4 hover:-translate-y-0.5 duration-200">
               Shuzhu
             </span>
