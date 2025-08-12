@@ -9,6 +9,10 @@ const Home = () => {
   const [showPhoto, setShowPhoto] = useState(false);
   const subtitleFullText = 'Data Scientist & Software Developer';
 
+  // Use Vite base-aware URLs for images in public/ to work on GitHub Pages
+  const pixelUrl = `${import.meta.env.BASE_URL}pixel-picture.png`;
+  const pictureUrl = `${import.meta.env.BASE_URL}picture.png`;
+
   useEffect(() => {
     setTimeout(() => setShowHello(true), 300);
     setTimeout(() => setShowName(true), 800);
@@ -95,14 +99,14 @@ const Home = () => {
             >
               {/* default picture */}
               <img
-                src={'/pixel-picture.png'}
+                src={pixelUrl}
                 alt="Shuzhu Chen (pixel)"
                 className="absolute inset-0 w-full h-full object-cover rounded-lg border border-[#e5e3de]"
                 style={{ opacity: showPhoto ? 0 : 1, transition: 'opacity 200ms ease' }}
               />
               {/* hover picture */}
               <img
-                src={'/picture.png'}
+                src={pictureUrl}
                 alt="Shuzhu Chen"
                 className="absolute inset-0 w-full h-full object-cover rounded-lg border border-[#e5e3de]"
                 style={{ opacity: showPhoto ? 1 : 0, transition: 'opacity 200ms ease' }}
