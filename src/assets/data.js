@@ -75,11 +75,6 @@ export const experiences = [
       'Developed end-to-end Agentic AI solutions with tool-calling capabilities (RAG, Email, Discord integrations) and full-stack applications including database schema design, REST API endpoints, and frontend/backend deployment.',
       'Gathered requirements from business stakeholders, developed POCs and prototypes, and collaborated with cross-functional teams.',
       'Established CI/CD pipelines using GitHub Actions, designed UI/UX prototypes in Figma, created production monitoring dashboards, and optimized cloud costs while maintaining operational excellence and on-call support capabilities.',
-      // 'Designed data pipeline to ensure accurate and timely data migration for OmniSense Labs, optimizing workflows for large-scale raw data.',
-      // 'Developed ETL processes, automating data extraction, transformation, and loading to enhance data integrity and accessibility.',
-      // 'Collaborated with cross-functional teams to analyze data requirements and ensure integration of raw datasets into analytic ML workflows.',
-      // 'Conducted data validation and quality assurance to mitigate errors and discrepancies, improving the reliability of business intelligence reports and AI models.',
-      // 'Optimized pipeline performance, reducing data processing time and improving scalability for future expansion.'
     ]
   },
   {
@@ -90,6 +85,19 @@ export const experiences = [
     responsibilities: [
       'Developed and deployed 10+ interactive data visualization dashboards using Tableau, presenting key financial metrics and trends to senior management, which improved decision-making efficiency by 25% and enhanced reporting accuracy by 21%',
       'Performed in-depth analysis of over 50,000 financial data points from loan portfolios and trading systems to support credit risk management, utilizing SQL and Python to automate reporting workflows, reducing manual effort by 40% and improving process efficiency by 25%, leading to a 15% reduction in reporting errors'
+    ]
+  },
+  {
+    position: 'Research Assistant',
+    company: 'Institute for Advanced Research, SUFE',
+    project: 'Longitudinal Study on Migrant Children in Shanghai',
+    location: 'Shanghai, China',
+    period: 'Feb 2020 – Jun 2020',
+    responsibilities: [
+      "Designed and managed databases in Epidata and MySQL to collect and analyze 10k+ data records on migrant children's education, implementing ETL pipelines to ensure efficient data integration and storage.",
+      'Conducted statistical analysis using R Programming and Python, identifying factors influencing education outcomes.',
+      'Developed data quality control processes, implementing data validation, cleaning protocols, and SQL queries to ensure data accuracy and integrity.',
+      'Performed exploratory data analysis (EDA) using clustering, regression, and other techniques to inform research hypotheses, with insights supporting study designs.'
     ]
   }
 ];

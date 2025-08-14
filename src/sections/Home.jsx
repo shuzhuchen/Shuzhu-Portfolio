@@ -6,11 +6,9 @@ const Home = () => {
   const [subtitle, setSubtitle] = useState('');
   const [showHello, setShowHello] = useState(false);
   const [showName, setShowName] = useState(false);
-  const [showPhoto, setShowPhoto] = useState(false);
   const subtitleFullText = 'Data Scientist & Software Developer';
 
-  // Use Vite base-aware URLs for images in public/ to work on GitHub Pages
-  const pixelUrl = `${import.meta.env.BASE_URL}pixel-picture.png`;
+  // Use Vite base-aware URL for image in public/ to work on GitHub Pages
   const pictureUrl = `${import.meta.env.BASE_URL}picture.png`;
 
   useEffect(() => {
@@ -92,24 +90,11 @@ const Home = () => {
           
           {/* Right: Profile Image */}
           <div className="flex-shrink-0 flex justify-center lg:justify-end mt-8 lg:mt-0">
-            <div
-              className="relative w-48 sm:w-56 md:w-64 lg:w-72 aspect-[3/4] shadow-xl"
-              onMouseEnter={() => setShowPhoto(true)}
-              onMouseLeave={() => setShowPhoto(false)}
-            >
-              {/* default picture */}
-              <img
-                src={pixelUrl}
-                alt="Shuzhu Chen (pixel)"
-                className="absolute inset-0 w-full h-full object-cover rounded-lg border border-[#e5e3de]"
-                style={{ opacity: showPhoto ? 0 : 1, transition: 'opacity 200ms ease' }}
-              />
-              {/* hover picture */}
+            <div className="relative w-48 sm:w-56 md:w-64 lg:w-72 aspect-[3/4] shadow-xl">
               <img
                 src={pictureUrl}
                 alt="Shuzhu Chen"
                 className="absolute inset-0 w-full h-full object-cover rounded-lg border border-[#e5e3de]"
-                style={{ opacity: showPhoto ? 1 : 0, transition: 'opacity 200ms ease' }}
               />
             </div>
           </div>
