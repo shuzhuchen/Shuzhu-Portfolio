@@ -19,10 +19,12 @@ function App() {
   const [isDark, setIsDark] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
+  const base = import.meta.env.BASE_URL || '/';
+
   // Handle URL changes
   useEffect(() => {
     const handlePopState = () => {
-      const path = window.location.pathname.slice(1); 
+      const path = window.location.pathname.replace(base, '').replace(/^\/+/, '');
       const validSections = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
       
       if (path === '' || path === '/') {
@@ -41,7 +43,7 @@ function App() {
     return () => {
       window.removeEventListener('popstate', handlePopState);
     };
-  }, []);
+  }, [base]);
 
   // Handle scroll and update active section
   useEffect(() => {
@@ -56,7 +58,7 @@ function App() {
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             if (activeSection !== section) {
               setActiveSection(section);
-              window.history.pushState(null, '', `/${section}`);
+              window.history.pushState(null, '', `${base}${section}`);
             }
             break;
           }
@@ -66,7 +68,7 @@ function App() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeSection]);
+  }, [activeSection, base]);
 
   // Effect to apply dark mode class to body or HTML root
   useEffect(() => {
@@ -83,7 +85,7 @@ function App() {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(sectionId);
       // 更新URL
-      window.history.pushState(null, '', `/${sectionId}`);
+      window.history.pushState(null, '', `${base}${sectionId}`);
     }
   };
 
