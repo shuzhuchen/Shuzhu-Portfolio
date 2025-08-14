@@ -21,7 +21,7 @@ const Projects = () => {
             <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 sm:w-40 h-1 bg-gradient-to-r from-gray-400 to-gray-600 dark:from-gray-500 dark:to-gray-300 rounded-full animate-pulse shadow-md"></span>
           </h2>
           <p className="text-center text-lg text-gray-600 dark:text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
-            The ideas I brought to life through hands-onexperience
+            The ideas I brought to life through hands-on experience
           </p>
         </div>
 
