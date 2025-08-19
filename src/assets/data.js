@@ -81,7 +81,7 @@ export const experiences = [
     position: 'Financial Data Analyst',
     company: 'Bank of China',
     location: 'Shanghai, China',
-    period: 'Aug 2020 – Jun 2021',
+    period: 'Aug 2020 – Jun 2023',
     responsibilities: [
       'Developed and deployed 10+ interactive data visualization dashboards using Tableau, presenting key financial metrics and trends to senior management, which improved decision-making efficiency by 25% and enhanced reporting accuracy by 21%',
       'Performed in-depth analysis of over 50,000 financial data points from loan portfolios and trading systems to support credit risk management, utilizing SQL and Python to automate reporting workflows, reducing manual effort by 40% and improving process efficiency by 25%, leading to a 15% reduction in reporting errors'
