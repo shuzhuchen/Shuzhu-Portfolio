@@ -65,7 +65,7 @@ export const skillIcons = {
 // Experience Data
 export const experiences = [
   {
-    position: 'AI/ML Data Scientist',
+    position: 'AI/ML Full Stack Engineer',
     company: 'Kismet.xyz',
     location: 'San Jose, CA',
     period: 'Jan 2025 – Present',
@@ -78,13 +78,18 @@ export const experiences = [
     ]
   },
   {
-    position: 'Financial Data Analyst',
+    position: 'Software Engineer',
     company: 'Bank of China',
     location: 'Shanghai, China',
     period: 'Aug 2020 – Jun 2023',
     responsibilities: [
-      'Developed and deployed 10+ interactive data visualization dashboards using Tableau, presenting key financial metrics and trends to senior management, which improved decision-making efficiency by 25% and enhanced reporting accuracy by 21%',
-      'Performed in-depth analysis of over 50,000 financial data points from loan portfolios and trading systems to support credit risk management, utilizing SQL and Python to automate reporting workflows, reducing manual effort by 40% and improving process efficiency by 25%, leading to a 15% reduction in reporting errors'
+      'Engineered a high-performance credit risk scoring system using Random Forest and XGBoost to process 1M+ monthly loan applications, improving prediction accuracy by 15% and reducing manual review by 70%.',
+      'Built multiple behavioral and application scorecards on Hive and Hadoop for TB-scale data, increasing pre-loan approval efficiency by 20% and lowering credit default rates.',
+      'Delivered 10+ data modeling projects covering credit risk, anti-fraud, and customer churn prediction.',
+      'Enhanced the risk system with an automated early warning model using Z-score and multi-dimensional indicators, flagging 200+ high-risk customers per quarter and cutting potential losses by 10%.',
+      'Streamlined development by collaborating on an Agile framework, shortening deployment cycles by 30%.',
+      // 'Developed and deployed 10+ interactive data visualization dashboards using Tableau, presenting key financial metrics and trends to senior management, which improved decision-making efficiency by 25% and enhanced reporting accuracy by 21%.',
+      // 'Performed in-depth analysis of over 50,000 financial data points from loan portfolios and trading systems to support credit risk management, utilizing SQL and Python to automate reporting workflows, reducing manual effort by 40% and improving process efficiency by 25%, leading to a 15% reduction in reporting errors.'
     ]
   },
   {

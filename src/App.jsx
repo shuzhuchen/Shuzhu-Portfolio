@@ -5,6 +5,7 @@ import './App.css';
 import Navigation from './components/Navigation';
 import ChatWidget from './components/ChatWidget';
 import SpotlightCursor from './components/SpotlightCursor';
+import HuarongRoad from './components/HuarongRoad';
 
 // Sections
 import Home from './sections/Home';
@@ -25,7 +26,7 @@ function App() {
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname.replace(base, '').replace(/^\/+/, '');
-      const validSections = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
+      const validSections = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'contact', 'huarongroad'];
       
       if (path === '' || path === '/') {
         setActiveSection('home');
@@ -48,7 +49,7 @@ function App() {
   // Handle scroll and update active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
+      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'contact', 'huarongroad'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -109,6 +110,9 @@ function App() {
             <Experience isDark={isDark} />
             <Projects isDark={isDark} />
             <Education isDark={isDark} />
+            <div id="huarongroad">
+              <HuarongRoad isDark={isDark} />
+            </div>
             <Contact isDark={isDark} />
           </div>
         </div>
